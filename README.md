@@ -15,13 +15,15 @@
 建议使用 Node.js 22 LTS，并配合 `pnpm` 进行依赖管理。
 
 ```bash
-git switch codex/bootstrap-vitepress-site
+git switch <你的开发分支>
 ```
 
 ```bash
 pnpm install
 pnpm docs:dev
 ```
+
+`docs:dev` 已在 `docs/.vitepress/config.ts` 中开启开发态轮询监听，用来保证 `git worktree` 目录下的 Markdown 改动也能稳定触发热更新。
 
 ## 生产构建
 
@@ -34,6 +36,8 @@ pnpm test
 
 - 不在 `main` 分支直接开发
 - 新功能优先在开发分支上完成
+- 当判断适合创建独立 worktree 时，先和你确认是否创建
+- worktree 统一使用 `~/Codes/worktree/<项目相对目录>/<项目名>/<分支层级>`，例如 `MyBlog/codex/worktree-manuals`
 - 提交按小模块拆分，并使用中文提交信息
 - 合并回主分支时使用 `--no-ff`
 
@@ -55,4 +59,7 @@ pnpm test
 - 提交 `pull_request` 时执行安装、测试与构建
 - 推送到 `main` 时执行构建并发布到 GitHub Pages
 
-更详细的内容规范、frontmatter 约定和发布流程，见 [docs/技术方案.md](docs/技术方案.md)。
+## 操作文档
+
+- 站点结构、内容规范与发布流程见 [docs/技术方案.md](docs/技术方案.md)
+- 日常维护、文档 CRUD、导航模块调整、worktree 与启动命令见 [docs/操作手册.md](docs/操作手册.md)
