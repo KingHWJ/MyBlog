@@ -23,6 +23,8 @@ pnpm install
 pnpm docs:dev
 ```
 
+`docs:dev` 已在 `docs/.vitepress/config.ts` 中开启开发态轮询监听，用来保证 `git worktree` 目录下的 Markdown 改动也能稳定触发热更新。
+
 ## 生产构建
 
 ```bash

@@ -10,6 +10,15 @@ export default defineConfig({
   description: '面向后端与大数据学习者的中文知识库技术站。',
   lang: 'zh-CN',
   base,
+  vite: {
+    server: {
+      watch: {
+        // git worktree 下这台机器的原生文件事件不稳定，开发时改用轮询确保文档热更新。
+        usePolling: true,
+        interval: 120
+      }
+    }
+  },
   cleanUrls: true,
   lastUpdated: true,
   ignoreDeadLinks: true,
@@ -118,4 +127,3 @@ export default defineConfig({
     }
   }
 })
-
