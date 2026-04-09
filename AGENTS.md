@@ -1,6 +1,8 @@
 开发时，不要基于主分支开发，要创建开发分支
+当你觉得需要创建新分支 worktree 时，先主动询问是否需要创建 worktree，而不是直接创建
 当前仓库的 worktree 统一创建在 `~/Codes/worktree` 下面，并对照原项目在 `~/Codes` 下的层级结构
-本仓库约定使用 `pnpm worktree:path <分支名>` 计算目标目录，目录格式为 `~/Codes/worktree/<项目相对目录>/<项目名>/<分支名>`
+codex 的 worktree 分支应保留 `codex` 目录层级
+本仓库约定使用 `pnpm worktree:path <分支名>` 计算目标目录，目录格式为 `~/Codes/worktree/<项目相对目录>/<项目名>/<分支层级>`
 git提交，按小模块提交，一个小功能的修改就提交一下，并用中文提交
 git合并以--no-ff方式合并，不要用快进合并
 代码中需要维护中文注释

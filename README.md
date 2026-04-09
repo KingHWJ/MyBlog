@@ -34,7 +34,8 @@ pnpm test
 
 - 不在 `main` 分支直接开发
 - 新功能优先在开发分支上完成
-- 需要创建独立工作区时，统一使用 `~/Codes/worktree/<项目相对目录>/<项目名>/<分支名>`，并通过 `pnpm worktree:path <分支名>` 计算目录
+- 当判断适合创建独立 worktree 时，先和你确认是否创建
+- worktree 统一使用 `~/Codes/worktree/<项目相对目录>/<项目名>/<分支层级>`，例如 `MyBlog/codex/worktree-manuals`
 - 提交按小模块拆分，并使用中文提交信息
 - 合并回主分支时使用 `--no-ff`
 

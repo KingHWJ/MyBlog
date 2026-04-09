@@ -2,8 +2,15 @@ import { execFileSync } from 'node:child_process'
 import path from 'node:path'
 import process from 'node:process'
 
-function sanitizeBranchName(branchName) {
-  return branchName.trim().replace(/[\/\s]+/g, '-')
+function sanitizeBranchSegment(segment) {
+  return segment.trim().replace(/\s+/g, '-')
+}
+
+function normalizeBranchPath(branchName) {
+  return branchName
+    .split(/[\\/]+/)
+    .map(sanitizeBranchSegment)
+    .filter((segment) => segment.length > 0)
 }
 
 export function resolveProjectRootFromWorktrees(currentPath, worktreePaths) {
@@ -53,10 +60,10 @@ export function buildWorktreePath({
 
   const projectDir = path.dirname(relativeProjectPath)
   const projectName = path.basename(relativeProjectPath)
-  const branchSegment = sanitizeBranchName(branchName)
+  const branchSegments = normalizeBranchPath(branchName)
 
   // 先按原项目结构创建项目目录，再用分支名作为子目录，便于同一项目并行维护多条 worktree 线。
-  return path.join(codesRoot, 'worktree', projectDir, projectName, branchSegment)
+  return path.join(codesRoot, 'worktree', projectDir, projectName, ...branchSegments)
 }
 
 function printUsage() {
