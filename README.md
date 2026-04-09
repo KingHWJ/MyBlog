@@ -15,6 +15,10 @@
 建议使用 Node.js 22 LTS，并配合 `pnpm` 进行依赖管理。
 
 ```bash
+git switch codex/bootstrap-vitepress-site
+```
+
+```bash
 pnpm install
 pnpm docs:dev
 ```
@@ -25,6 +29,13 @@ pnpm docs:dev
 pnpm docs:build
 pnpm test
 ```
+
+## Git 工作流
+
+- 不在 `main` 分支直接开发
+- 新功能优先在开发分支上完成
+- 提交按小模块拆分，并使用中文提交信息
+- 合并回主分支时使用 `--no-ff`
 
 ## 目录结构
 
@@ -39,5 +50,9 @@ pnpm test
 
 当前首版默认面向 `GitHub Pages` 部署，工作流会在 GitHub Actions 中执行构建与发布。
 
-更详细的内容规范、frontmatter 约定和发布流程，见 [docs/技术方案.md](docs/技术方案.md)。
+工作流文件位于 `.github/workflows/deploy.yml`，默认会在：
 
+- 提交 `pull_request` 时执行安装、测试与构建
+- 推送到 `main` 时执行构建并发布到 GitHub Pages
+
+更详细的内容规范、frontmatter 约定和发布流程，见 [docs/技术方案.md](docs/技术方案.md)。
