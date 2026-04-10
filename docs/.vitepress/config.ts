@@ -1,9 +1,8 @@
 import { defineConfig } from 'vitepress'
 
-const repositoryName = process.env.GITHUB_REPOSITORY?.split('/')[1] ?? 'MyBlog'
-
-// GitHub Pages 走项目页时需要带上仓库名，本地开发仍保持根路径。
-const base = process.env.GITHUB_ACTIONS === 'true' ? `/${repositoryName}/` : '/'
+// 自定义域名（如 laohang.space）应始终使用根路径。
+// 若后续切回项目页（username.github.io/repo），可在 CI 中设置 VITEPRESS_BASE=/repo/ 覆盖。
+const base = process.env.VITEPRESS_BASE ?? '/'
 
 export default defineConfig({
   title: 'MyBlog',
